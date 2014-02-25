@@ -399,6 +399,7 @@ command_hostupdatemac.__none_argument__ = False
 def command_hostwake(argument=None):  
     """sends wol paket to  a defined host"""
 
+    #shamelessly ripped of from http://code.activestate.com/recipes/358449-wake-on-lan/
     def wake_on_lan(macaddress):
         """ Switches on remote computers using WOL. """
 

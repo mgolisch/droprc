@@ -46,6 +46,9 @@ def run_command():
     if commandline == "exit" :
         exitclient()
         return
+    if commandline == "listcommands" :
+        listcommands()
+        return
     print 'running command ' + commandline
     print
     with open(commandfile,'w') as command:
@@ -58,6 +61,19 @@ def read_status():
         print "remote server running"
         for line in status.readlines():
             print line.replace("\n","")
+        print
+
+def listcommands():
+    with open(commandlistfile) as commandlist:
+        print "available commands are:"
+        commands = json.load(commandlist)
+        keys = commands.keys()
+        keys.sort()
+        for key in keys:
+            print key
+            print "description : " + commands[key]['command_help']
+            print "args: accepts arg: " + str(commands[key]['command_has_arg']) + " arg is optional: " + str(commands[key]['command_none_arg'])
+            print
         print
 
 def noresponse():
